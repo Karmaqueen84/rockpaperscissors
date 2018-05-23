@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+	<script>
+		// setting variables. these work
+		let choices = ["rock", "paper", "scissors"];
+
+		let computerSelection;
+
+		let playerSelection;
+
+		// let playerChoice = prompt("Rock, Paper or Scissors?");
+
+		// let playerSelection = playerchoice.toLowerCase();
+
+		let computerWins = 0;
+
+		let playerWins = 0;
+
+		let gameTies = 0;
+
+		let round = 1;
+
+		let scoreOutcome;
+
+
+		// generating player choice. this works
+		function playerInput() {
+			let playerChoice = prompt("Rock, Paper or Scissors?");
+			return playerChoice;
+			let playerSelection = playerChoice.toLowerCase();
+			return playerSelection;
+		}
+
+
+		// generating random play for computer choices. this works now
+		function computerPlay() {
+			let computerRandomChoice = choices[Math.floor(choices.length * Math.random())]
+		    return computerRandomChoice;
+		}
+
+
+
+		// playing a single round of the game. now works.
+
+		function playRound () {
+			// console.log(computerSelection);
+			// console.log(playerSelection);
+			if (playerSelection == computerSelection) {
+				return "Draw!";
+
+			} else if (playerSelection == "rock") {
+				if (computerSelection == "paper") {
+					return "You Lose! Paper beats Rock!";	
+				} else if (computerSelection == "scissors") {
+					return "You Win!";
+				}
+			} else if (playerSelection == "paper") {
+				if (computerSelection == "rock") {
+					return "You Win!";
+				} else if (computerSelection == "scissors") {
+					return "You Lose! Scissors beat Paper!";
+				}
+			} else if (playerSelection == "scissors") {
+				if (computerSelection == "rock") {
+					return "You Lose! Rock beats Scissors!";
+				} else if (computerSelection == "paper") {
+					return "You Win!";
+				}
+
+			} else {
+				return "I don't understand your choice";
+			}
+		}
+
+		// keeping track of score. this is working
+
+		function updateScore(result) {
+			if (result == "You Win!") {
+				playerWins++;
+				return "You gained 1 point!";
+			} else if (result == "Draw!") {
+				gameTies++;
+				return "That was a Draw!";
+			} else {
+				computerWins++;
+				return "The computer gained 1 point!";
+			}
+		}
+
+		// 5 game round. not playing 5 games, not showing output increasing wins by 2
+		function game() {
+			while (round <= 5) {
+				console.log('round '+round);
+				playerSelection = playerInput();
+				computerSelection = computerPlay();
+				let result = playRound();
+				console.log(result);
+				let score = updateScore(result);
+				console.log(score);
+				round++;
+			}
+			console.log('Final Score: '+playerWins+'/'+computerWins+'/'+gameTies);
+		}
+
+		game();
+
+
+	</script>
+
+
+</html>
